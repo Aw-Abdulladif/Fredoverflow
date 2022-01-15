@@ -40,6 +40,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>9.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
@@ -107,6 +113,10 @@
                         <option>-libraryjars ${java.runtime}</option>
                         <!-- preserve entry point, otherwise output jar would be empty -->
                         <option>-keep public class ${main.class} { public static void main(java.lang.String[]); }</option>
+                        <!-- preserve classes related to dynamic code generation -->
+                        <option>-keep public class vm.Karel { *; }</option>
+                        <option>-keep public class vm.Karel$Callbacks { *; }</option>
+                        <option>-keep public class Karel_0 { *; }</option>
                         <!-- remove compiler-generated null checks for unneeded Java->Kotlin interoperability -->
                         <option>-assumenosideeffects class kotlin.jvm.internal.Intrinsics { static void checkParameterIsNotNull(java.lang.Object, java.lang.String); }</option>
                         <!-- hide annoying but harmless reflection warnings -->
