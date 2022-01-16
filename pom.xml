@@ -117,6 +117,8 @@
                         <option>-keep public class vm.Karel { *; }</option>
                         <option>-keep public class vm.Karel$Callbacks { *; }</option>
                         <option>-keep public class Karel_0 { *; }</option>
+                        <!-- ProGuard does not support signature polymorphism -->
+                        <option>-dontwarn java.lang.invoke.MethodHandle</option>
                         <!-- remove compiler-generated null checks for unneeded Java->Kotlin interoperability -->
                         <option>-assumenosideeffects class kotlin.jvm.internal.Intrinsics { static void checkParameterIsNotNull(java.lang.Object, java.lang.String); }</option>
                         <!-- hide annoying but harmless reflection warnings -->
